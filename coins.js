@@ -29,7 +29,6 @@ function coinCounter (quarters, dimes, nickels, pennies) {
    return coinPurse;
 }
 
-
 //call function to actually build coinPurse object,
 //with 4 coin values inside
 coinPurse = coinCounter(.25, .10, .05,.01);
@@ -56,20 +55,26 @@ if (runningTotal <.25 && runningTotal % .10 === 0){
     coinPurse.dimes = runningTotal/.10;
     runningTotal-=runningTotal;
     console.log(`You have ${coinPurse.dimes} dime(s)`);
-    }
-  // else if (runningTotal % .10 !== 0 && runningTotal>.10) {
+}else if (runningTotal % .10 !== 0 && runningTotal>.10) {
+coinPurse.dimes = runningTotal/.10;
+ console.log(`You have ${Math.floor(coinPurse.dimes)} dime(s) and`);
+ runningTotal -= (Math.floor(coinPurse.dimes) * .10);
+ runningTotal = parseFloat(Math.fround(runningTotal).toFixed(2));
+}
 
+if (runningTotal <.10 && runningTotal % .05 === 0){
+    coinPurse.nickels = runningTotal/.05;
+    runningTotal-=runningTotal;
+    console.log(`You have ${coinPurse.nickels} nickel(s)`);
+}else if (runningTotal % .05 !== 0 && runningTotal>.05){
+ coinPurse.nickels = runningTotal/.05;
+ console.log(`You have ${Math.floor(coinPurse.nickels)} nickel(s) and`);
+ runningTotal -= (Math.floor(coinPurse.nickels) * .05);
+ runningTotal = parseFloat(Math.fround(runningTotal).toFixed(2));
+}
 
-  // }
-// console.log ("runningTotal", runningTotal);
-
-
-
-
-
-
-
-
- var coins = coinCounter()
-
- console.log();
+if (runningTotal <.05){
+    coinPurse.pennies = runningTotal/.01;
+    runningTotal-=runningTotal;
+    console.log(`You have ${coinPurse.pennies} pennies`);
+}
